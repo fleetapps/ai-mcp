@@ -345,7 +345,8 @@
                     <a class="btn btn-sm btn-primary" target="_blank"
                        rel="noopener noreferrer"
                        t-att-href="state.data.upgrade.url">AI MCP Governance</a>
-                    <a class="btn btn-sm btn-link" target="_blank"
+                    <a t-if="state.data.upgrade.dashboards_url"
+                       class="btn btn-sm btn-link" target="_blank"
                        rel="noopener noreferrer"
                        t-att-href="state.data.upgrade.dashboards_url">
                         Build dashboards by asking for them →

@@ -173,7 +173,7 @@ class TestConnectState(TransactionCase):
         upgrade = self.Connect.get_state()["upgrade"]
         self.assertTrue(upgrade["show"])
         self.assertTrue(upgrade["url"])
-        self.assertTrue(upgrade["dashboards_url"])
+        self.assertIn("dashboards_url", upgrade)
 
     # ------------------------------------------------------------ self test
     def test_self_test_runs_through_the_real_engine_and_is_audited(self):

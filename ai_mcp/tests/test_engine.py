@@ -67,12 +67,23 @@ class TestEngine(TransactionCase):
 
         A module that adds a mutating handler without adding the governance to
         go with it gets a refusal, not an unaudited, ungated write.
+
+        The stand-in is deliberate: `writes` is a stored compute over
+        `handler`, so a record faked with writes=True would just recompute
+        itself back to False and the test would pass without testing anything.
+        The guard reads exactly two attributes, and those are what it is given.
         """
-        tool = self.env["mcp.tool"].search([("name", "=", "search_records")])
+        class WritingTool:
+            name = "wreck_everything"
+            writes = True
+
         with self.assertRaises(AccessError):
-            # Simulate a downstream module having classified this as writing.
-            self.engine._check_write_permitted(
-                tool.new({"name": "x", "writes": True}), {})
+            self.engine._check_write_permitted(WritingTool(), {})
+
+    def test_the_write_guard_lets_a_read_verb_through(self):
+        tool = self.env["mcp.tool"].search([("name", "=", "search_records")])
+        self.assertFalse(tool.writes)
+        self.engine._check_write_permitted(tool, {})  # must not raise
 
     def test_no_shipped_tool_writes(self):
         self.assertFalse(self.env["mcp.tool"].search([("writes", "=", True)]))
@@ -89,12 +100,30 @@ class TestEngine(TransactionCase):
                              "meaningless while readOnlyHint is true")
 
     def test_read_tools_name_the_models_this_scope_can_reach(self):
-        """So the first question does not cost a discovery round trip."""
-        tools = {t["name"]: t["description"]
-                 for t in self.engine.list_tools(self.scope)}
+        """So the first question does not cost a discovery round trip.
+
+        Against a purpose-built narrow scope, not the seeded one: the install
+        hook opens that onto every business app present, and the hint lists
+        only the first twelve names alphabetically, so which models appear
+        depends on what the test database happens to have installed.
+        """
+        scope = self.env["mcp.scope"].create({"name": "TEST hint"})
+        scope.add_models(["res.partner", "res.country"])
+        tools = {t["name"]: t["description"] for t in self.engine.list_tools(scope)}
         self.assertIn("res.partner", tools["search_records"])
+        self.assertIn("res.country", tools["read_group"])
         self.assertNotIn("res.partner", tools["get_schema"],
                          "only the model-aware verbs carry the hint")
+
+    def test_the_model_hint_summarises_rather_than_listing_everything(self):
+        """A scope opened onto a whole ERP must not bloat every description."""
+        scope = self.env["mcp.scope"].create({"name": "TEST wide"})
+        models = self.env["ir.model"].search(
+            [("transient", "=", False)], limit=30).mapped("model")
+        scope.add_models(models)
+        hint = self.engine._model_hint(scope)
+        self.assertIn("more", hint)
+        self.assertLess(hint.count(","), 15)
 
     def test_list_models_hides_archived_rows(self):
         """Advertising one promises access every later call refuses."""

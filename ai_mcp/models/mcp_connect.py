@@ -105,10 +105,13 @@ CLIENT_STEPS = {
 # The name the server registers itself under inside the client's config.
 INSTALL_SERVER_NAME = "odoo"
 
-# Where the paid edition and the companion app live. Constants rather than
-# inline strings so a listing move is one edit, not a grep.
+# Where the paid edition lives. A constant rather than an inline string so a
+# listing move is one edit, not a grep.
 GOVERNANCE_URL = "https://apps.odoo.com/apps/modules/19.0/mcp_governance_suite"
-DASHBOARDS_URL = "https://apps.odoo.com/apps/modules/19.0/ai_dashboards"
+# AI Dashboards is not on the App Store yet. Left empty on purpose: the card
+# below renders the link only when there is one, so shipping a dead link is
+# not something a future listing has to remember to undo.
+DASHBOARDS_URL = ""
 
 # Where a starter prompt can be opened, once a connection exists. Both take the
 # prompt as ?q= and only prefill the composer - the user still reads it and
