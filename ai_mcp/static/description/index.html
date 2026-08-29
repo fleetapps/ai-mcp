@@ -1,0 +1,187 @@
+<section style="font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#14181d;line-height:1.6;max-width:1000px;margin:0 auto;padding:0 0 48px">
+
+  <img src="banner.png" alt="AI MCP for Odoo" style="width:100%;display:block;border-radius:12px"/>
+
+  <div style="text-align:center;padding:40px 24px 8px">
+    <h1 style="font-size:40px;line-height:1.1;margin:0 0 12px;font-weight:700">
+      Ask your assistant about your Odoo data
+    </h1>
+    <p style="font-size:19px;color:#4e586a;max-width:680px;margin:0 auto 20px">
+      An MCP server that runs <b>inside Odoo</b>. Sign in with your normal Odoo
+      login, paste one URL into Claude, ChatGPT, Gemini or Cursor, and start
+      asking. No extra process, no middleware, no Python dependencies.
+    </p>
+    <p style="display:inline-block;background:#e6f3eb;color:#1e7d46;font-weight:600;
+              border-radius:999px;padding:8px 20px;font-size:15px;margin:0">
+      Free &amp; open source · LGPL-3 · Read-only by construction
+    </p>
+  </div>
+
+  <!-- ============================================================ the path -->
+  <div style="background:#f7f8fa;border-radius:14px;padding:32px;margin:32px 0">
+    <h2 style="font-size:26px;margin:0 0 6px;font-weight:700">About a minute, start to answer</h2>
+    <p style="color:#4e586a;margin:0 0 24px">
+      The Connect screen checks every precondition <i>before</i> you leave for
+      your assistant, so you never find out something is wrong by watching
+      Claude fail.
+    </p>
+    <table style="width:100%;border-collapse:collapse">
+      <tr>
+        <td style="width:34px;vertical-align:top;padding:10px 0;font-weight:700;color:#2f4b6e">1</td>
+        <td style="padding:10px 0;border-bottom:1px solid #dde2e9">
+          <b>Install.</b> A read-only scope is created and opened onto the
+          business models your database actually has — sales, invoicing,
+          inventory, CRM, projects, whichever are installed.
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align:top;padding:10px 0;font-weight:700;color:#2f4b6e">2</td>
+        <td style="padding:10px 0;border-bottom:1px solid #dde2e9">
+          <b>Open Connect.</b> Readiness checks confirm your public HTTPS
+          address, that the server answers from the internet, and that
+          permissions exist. Each one that fails names the fix and opens the
+          screen that applies it.
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align:top;padding:10px 0;font-weight:700;color:#2f4b6e">3</td>
+        <td style="padding:10px 0;border-bottom:1px solid #dde2e9">
+          <b>Copy one URL.</b> Paste it into your assistant and click
+          <b>Allow</b>. VS Code and Cursor get one-click install links; there is
+          a QR code for mobile.
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align:top;padding:10px 0;font-weight:700;color:#2f4b6e">4</td>
+        <td style="padding:10px 0">
+          <b>Ask.</b> "What were our sales last month?" — answered, running as
+          you, and logged.
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ============================================================== safety -->
+  <h2 style="font-size:26px;margin:40px 0 6px;font-weight:700">Safe because of how it is built</h2>
+  <p style="color:#4e586a;margin:0 0 20px">
+    Not because of a setting somebody has to remember to switch on.
+  </p>
+
+  <table style="width:100%;border-collapse:separate;border-spacing:12px 0">
+    <tr>
+      <td style="width:33%;vertical-align:top;background:#fff;border:1px solid #dde2e9;
+                 border-radius:12px;padding:20px">
+        <b style="display:block;margin-bottom:6px">Read-only, with no switch</b>
+        <span style="color:#4e586a;font-size:15px">
+          No create, update, delete or method-call tool exists in this module.
+          There is nothing to misconfigure into writing.
+        </span>
+      </td>
+      <td style="width:33%;vertical-align:top;background:#fff;border:1px solid #dde2e9;
+                 border-radius:12px;padding:20px">
+        <b style="display:block;margin-bottom:6px">Runs as the real user</b>
+        <span style="color:#4e586a;font-size:15px">
+          Every call executes as the signed-in person, so access rights, record
+          rules, field groups and multi-company isolation all apply underneath.
+          The assistant can never see more than they can.
+        </span>
+      </td>
+      <td style="width:33%;vertical-align:top;background:#fff;border:1px solid #dde2e9;
+                 border-radius:12px;padding:20px">
+        <b style="display:block;margin-bottom:6px">A matrix you control</b>
+        <span style="color:#4e586a;font-size:15px">
+          One row per Odoo model, switchable in a list. It can only ever take
+          access away, never add it.
+        </span>
+      </td>
+    </tr>
+  </table>
+
+  <!-- ================================================================ trust -->
+  <div style="border-left:3px solid #2f4b6e;background:#f7f8fa;border-radius:0 12px 12px 0;
+              padding:24px 28px;margin:32px 0">
+    <h3 style="margin:0 0 8px;font-size:19px">It never quietly gives you half an answer</h3>
+    <p style="margin:0;color:#4e586a">
+      Searches are capped, because an unbounded query on a 100,000-row model
+      takes the database with it. But a <i>silent</i> cap is worse than no cap:
+      the assistant receives a full page, has nothing to tell it the page was
+      full, and reports partial data as the complete answer. Every reply here
+      carries <code>has_more</code>, so it says the answer is partial and
+      narrows the question instead.
+    </p>
+  </div>
+
+  <!-- ============================================================ standards -->
+  <h2 style="font-size:26px;margin:40px 0 6px;font-weight:700">Standards, not shortcuts</h2>
+  <p style="color:#4e586a;margin:0 0 16px">
+    A self-contained OAuth 2.1 authorization server, so users sign in with
+    their normal Odoo login and SSO and 2FA just work.
+  </p>
+  <p style="color:#4e586a;margin:0 0 24px;font-size:15px">
+    Client ID Metadata Documents (the registration mechanism the MCP spec
+    recommends — the user never sees a client id or secret) · PKCE S256 ·
+    RFC 9728 protected-resource metadata · RFC 8414 server metadata ·
+    RFC 8707 audience-bound tokens · RFC 9207 issuer identification ·
+    RFC 7009 revocation · refresh-token rotation. RFC 7591 dynamic registration
+    is kept as a deprecated fallback.
+  </p>
+  <p style="color:#4e586a;margin:0 0 24px;font-size:15px">
+    The transport is <b>dual-era</b>: protocol revision <code>2026-07-28</code>
+    and the older handshake revisions <code>2025-06-18</code> and
+    <code>2025-03-26</code>, so connectors built against either generation keep
+    working.
+  </p>
+
+  <!-- ================================================================ tools -->
+  <h2 style="font-size:26px;margin:40px 0 12px;font-weight:700">Seven tools</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:15px">
+    <tr><td style="padding:8px 12px 8px 0;border-bottom:1px solid #e9ecf1;width:200px"><code>search_records</code></td>
+        <td style="padding:8px 0;border-bottom:1px solid #e9ecf1;color:#4e586a">Search with an Odoo domain and read fields back.</td></tr>
+    <tr><td style="padding:8px 12px 8px 0;border-bottom:1px solid #e9ecf1"><code>read_group</code></td>
+        <td style="padding:8px 0;border-bottom:1px solid #e9ecf1;color:#4e586a">Aggregate and group — revenue by month, leads by salesperson.</td></tr>
+    <tr><td style="padding:8px 12px 8px 0;border-bottom:1px solid #e9ecf1"><code>count_records</code></td>
+        <td style="padding:8px 0;border-bottom:1px solid #e9ecf1;color:#4e586a">Count without reading. Cheap on large models.</td></tr>
+    <tr><td style="padding:8px 12px 8px 0;border-bottom:1px solid #e9ecf1"><code>name_search</code></td>
+        <td style="padding:8px 0;border-bottom:1px solid #e9ecf1;color:#4e586a">Turn a customer or product name into an id, reliably.</td></tr>
+    <tr><td style="padding:8px 12px 8px 0;border-bottom:1px solid #e9ecf1"><code>get_schema</code></td>
+        <td style="padding:8px 0;border-bottom:1px solid #e9ecf1;color:#4e586a">A model's fields, so the assistant builds correct filters.</td></tr>
+    <tr><td style="padding:8px 12px 8px 0;border-bottom:1px solid #e9ecf1"><code>list_models</code></td>
+        <td style="padding:8px 0;border-bottom:1px solid #e9ecf1;color:#4e586a">What this connection may reach.</td></tr>
+    <tr><td style="padding:8px 12px 8px 0"><code>list_capabilities</code></td>
+        <td style="padding:8px 0;color:#4e586a">What it can do, and what it cannot.</td></tr>
+  </table>
+  <p style="color:#4e586a;margin:16px 0 0;font-size:15px">
+    Tools are <b>records</b>, not hard-coded Python. Ship an
+    <code>mcp.capability</code> and some <code>mcp.tool</code> rows, add a
+    handler by inheriting <code>mcp.engine</code>, and you have extended the
+    connector — no controller changes, upgrade-safe.
+  </p>
+
+  <!-- ============================================================= upgrade -->
+  <div style="border:1px dashed #dde2e9;border-radius:14px;padding:28px;margin:40px 0">
+    <h2 style="font-size:22px;margin:0 0 6px;font-weight:700">Where this edition stops</h2>
+    <p style="color:#4e586a;margin:0 0 16px">
+      Everything above is free and open source. <b>AI MCP Governance</b> adds
+      the parts a company needs before it lets an assistant change anything:
+    </p>
+    <ul style="color:#4e586a;margin:0;padding-left:20px;font-size:15px">
+      <li style="padding:4px 0"><b>Governed writes</b> — create, update, delete
+        and allow-listed business methods, with a per-model matrix and a human
+        approval queue in front of every change.</li>
+      <li style="padding:4px 0"><b>Per-team permissions</b> — several scopes,
+        assigned per user, plus field blacklists, record filters and method
+        allow-lists.</li>
+      <li style="padding:4px 0"><b>Compliance-grade audit</b> — every user's
+        activity in one place, with the retention window you need, and
+        long-lived API keys for headless and CI callers.</li>
+    </ul>
+  </div>
+
+  <div style="text-align:center;padding:24px 0 0;border-top:1px solid #dde2e9;color:#7a8494;font-size:14px">
+    <p style="margin:0 0 6px">
+      <a href="mailto:developers@fleet.ke" style="color:#2f4b6e;font-weight:600;text-decoration:none">developers@fleet.ke</a>
+    </p>
+    <p style="margin:0">Odoo 19 · Community · Enterprise · Odoo.sh · LGPL-3</p>
+  </div>
+
+</section>

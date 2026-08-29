@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- User-owned configuration: noupdate so admin edits are never clobbered
+         on upgrade. The rows below reference only `base` models, because
+         naming sale.order in a data file breaks installation on a database
+         without Sales. The business models are added at install time instead,
+         by the post_init_hook, which can check what is actually present. -->
+    <data noupdate="1">
+        <record id="scope_readonly_default" model="mcp.scope">
+            <field name="name">Read-only (safe default)</field>
+            <field name="description">The AI can read and aggregate the models
+                listed below, and nothing else. Add rows to widen it, or archive
+                a row to suspend access to one model without losing how it was
+                configured. Every call still runs as the signed-in Odoo user, so
+                this can only ever narrow what that person could already see.</field>
+        </record>
+
+        <record id="scope_line_partner" model="mcp.scope.line">
+            <field name="scope_id" ref="scope_readonly_default"/>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="can_read" eval="True"/>
+        </record>
+        <record id="scope_line_company" model="mcp.scope.line">
+            <field name="scope_id" ref="scope_readonly_default"/>
+            <field name="model_id" ref="base.model_res_company"/>
+            <field name="can_read" eval="True"/>
+        </record>
+        <record id="scope_line_country" model="mcp.scope.line">
+            <field name="scope_id" ref="scope_readonly_default"/>
+            <field name="model_id" ref="base.model_res_country"/>
+            <field name="can_read" eval="True"/>
+        </record>
+        <record id="scope_line_currency" model="mcp.scope.line">
+            <field name="scope_id" ref="scope_readonly_default"/>
+            <field name="model_id" ref="base.model_res_currency"/>
+            <field name="can_read" eval="True"/>
+        </record>
+    </data>
+</odoo>

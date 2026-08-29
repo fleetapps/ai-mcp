@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mcp_capability_user,mcp capability user,model_mcp_capability,group_mcp_user,1,0,0,0
+access_mcp_capability_admin,mcp capability admin,model_mcp_capability,group_mcp_admin,1,1,1,1
+access_mcp_tool_user,mcp tool user,model_mcp_tool,group_mcp_user,1,0,0,0
+access_mcp_tool_admin,mcp tool admin,model_mcp_tool,group_mcp_admin,1,1,1,1
+access_mcp_scope_user,mcp scope user,model_mcp_scope,group_mcp_user,1,0,0,0
+access_mcp_scope_admin,mcp scope admin,model_mcp_scope,group_mcp_admin,1,1,1,1
+access_mcp_scope_line_user,mcp scope line user,model_mcp_scope_line,group_mcp_user,1,0,0,0
+access_mcp_scope_line_admin,mcp scope line admin,model_mcp_scope_line,group_mcp_admin,1,1,1,1
+access_mcp_oauth_client_admin,mcp oauth client admin,model_mcp_oauth_client,group_mcp_admin,1,1,1,1
+access_mcp_oauth_authcode_admin,mcp oauth authcode admin,model_mcp_oauth_authcode,group_mcp_admin,1,0,0,1
+access_mcp_oauth_token_user,mcp connection user,model_mcp_oauth_token,group_mcp_user,1,1,0,1
+access_mcp_oauth_token_admin,mcp connection admin,model_mcp_oauth_token,group_mcp_admin,1,1,0,1
+access_mcp_audit_user,mcp activity user,model_mcp_audit_log,group_mcp_user,1,0,0,0
+access_mcp_audit_admin,mcp activity admin,model_mcp_audit_log,group_mcp_admin,1,0,0,1
+access_mcp_connect_user,mcp connect user,model_mcp_connect,group_mcp_user,1,1,1,1
+access_mcp_model_picker_admin,mcp model picker admin,model_mcp_model_picker,group_mcp_admin,1,1,1,1
