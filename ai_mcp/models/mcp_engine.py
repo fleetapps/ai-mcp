@@ -270,11 +270,11 @@ class MCPEngine(models.AbstractModel):
     def _blacklisted_fields(self, line):
         """Fields never returned for this model.
 
-        Always empty here; AI MCP Governance returns the row's field blacklist.
-        Odoo's own field-level groups still apply underneath either way,
-        because every call runs as the signed-in user.
+        Delegates to the matrix row so there is one answer to this question,
+        whichever layer asks it - the engine here, or a module validating a
+        query against the same row.
         """
-        return set()
+        return line.blacklisted_fields()
 
     @staticmethod
     def _parse_domain(raw):

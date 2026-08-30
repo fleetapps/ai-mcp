@@ -171,6 +171,23 @@ class MCPScopeLine(models.Model):
         "UNIQUE (scope_id, model_id)",
         "Each model can appear only once per scope.")
 
+    def blacklisted_fields(self):
+        """Fields never returned or accepted for this model.
+
+        Always empty here - per-field exclusions are an AI MCP Governance
+        feature. The method exists anyway, and is part of this module's
+        supported surface, because it is what every caller reaching a matrix
+        row asks for before naming a field: the engine's read handlers, and
+        anything downstream validating a query against a scope. Removing it
+        rather than emptying it turns "this edition has no blacklist" into an
+        AttributeError in somebody else's module.
+
+        Odoo's own field-level groups still apply underneath either way,
+        because every call runs as the signed-in user.
+        """
+        self.ensure_one()
+        return set()
+
     def action_open_scope(self):
         """Jump from a matrix row to the scope that owns it."""
         self.ensure_one()
