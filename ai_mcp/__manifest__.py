@@ -102,8 +102,12 @@ Provider-agnostic. Multi-company aware. Fully translatable. LGPL-3.
             "ai_mcp/static/src/connect/connect.xml",
         ],
     },
+    # The store falls back to the icon when there is no banner. Deliberate:
+    # the only banner available advertises writes, a free trial and a product
+    # name none of which belong to this edition, and a wrong banner costs more
+    # than no banner.
     "images": [
-        "static/description/banner.png",
+        "static/description/shot_ask.png",
     ],
     "pre_init_hook": "pre_init_check",
     "post_init_hook": "post_init_hook",

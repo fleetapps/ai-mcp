@@ -1,187 +1,284 @@
-<section style="font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#14181d;line-height:1.6;max-width:1000px;margin:0 auto;padding:0 0 48px">
+<section class="aimcp">
+<style>
+.aimcp{--ink:#0F172A;--body:#475569;--soft:#64748B;--line:#E2E8F0;--tint:#F8FAFC;
+ --teal:#0D9488;--teal-lt:#CCFBF1;--green:#047857;--green-lt:#D1FAE5;--amber:#B45309;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+ color:var(--ink);background:#fff;line-height:1.65;max-width:1020px;margin:0 auto;padding:0 0 56px;
+ -webkit-font-smoothing:antialiased}
+.aimcp *{box-sizing:border-box}
+.aimcp p{margin:0 0 14px}
+.aimcp h2{font-size:30px;line-height:1.2;font-weight:750;letter-spacing:-.02em;margin:0 0 10px}
+.aimcp h3{font-size:18px;line-height:1.35;font-weight:700;margin:0 0 6px}
+.aimcp .lede{font-size:18px;color:var(--body);max-width:640px;margin:0 0 28px}
+.aimcp .sec{padding:44px 0;border-top:1px solid var(--line)}
+.aimcp img{max-width:100%;height:auto;display:block}
 
-  <img src="banner.png" alt="AI MCP for Odoo" style="width:100%;display:block;border-radius:12px"/>
+/* hero */
+.aimcp .hero{padding:52px 32px 44px;text-align:center;
+ background:linear-gradient(170deg,#0F172A 0%,#134E4A 100%);border-radius:18px;color:#fff}
+.aimcp .hero h1{font-size:46px;line-height:1.06;font-weight:800;letter-spacing:-.03em;
+ margin:0 0 16px;color:#fff}
+.aimcp .hero p{font-size:19px;color:#C3D2D6;max-width:600px;margin:0 auto 22px}
+.aimcp .pill{display:inline-block;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);
+ color:#fff;border-radius:999px;padding:7px 18px;font-size:13.5px;font-weight:650;
+ letter-spacing:.02em;margin:0 0 22px}
+.aimcp .shotwrap{max-width:760px;margin:26px auto 0;border-radius:12px;overflow:hidden;
+ box-shadow:0 20px 50px -20px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.12)}
+.aimcp .cap{font-size:13.5px;color:#93A6AC;margin:12px 0 0}
 
-  <div style="text-align:center;padding:40px 24px 8px">
-    <h1 style="font-size:40px;line-height:1.1;margin:0 0 12px;font-weight:700">
-      Ask your assistant about your Odoo data
-    </h1>
-    <p style="font-size:19px;color:#4e586a;max-width:680px;margin:0 auto 20px">
-      An MCP server that runs <b>inside Odoo</b>. Sign in with your normal Odoo
-      login, paste one URL into Claude, ChatGPT, Gemini or Cursor, and start
-      asking. No extra process, no middleware, no Python dependencies.
-    </p>
-    <p style="display:inline-block;background:#e6f3eb;color:#1e7d46;font-weight:600;
-              border-radius:999px;padding:8px 20px;font-size:15px;margin:0">
-      Free &amp; open source · LGPL-3 · Read-only by construction
-    </p>
-  </div>
+/* generic grid */
+.aimcp .grid{display:flex;flex-wrap:wrap;gap:14px}
+.aimcp .col{flex:1 1 290px;background:#fff;border:1px solid var(--line);
+ border-radius:14px;padding:22px 24px}
+.aimcp .col p{font-size:15px;color:var(--body);margin:0}
 
-  <!-- ============================================================ the path -->
-  <div style="background:#f7f8fa;border-radius:14px;padding:32px;margin:32px 0">
-    <h2 style="font-size:26px;margin:0 0 6px;font-weight:700">About a minute, start to answer</h2>
-    <p style="color:#4e586a;margin:0 0 24px">
-      The Connect screen checks every precondition <i>before</i> you leave for
-      your assistant, so you never find out something is wrong by watching
-      Claude fail.
-    </p>
-    <table style="width:100%;border-collapse:collapse">
-      <tr>
-        <td style="width:34px;vertical-align:top;padding:10px 0;font-weight:700;color:#2f4b6e">1</td>
-        <td style="padding:10px 0;border-bottom:1px solid #dde2e9">
-          <b>Install.</b> A read-only scope is created and opened onto the
-          business models your database actually has — sales, invoicing,
-          inventory, CRM, projects, whichever are installed.
-        </td>
-      </tr>
-      <tr>
-        <td style="vertical-align:top;padding:10px 0;font-weight:700;color:#2f4b6e">2</td>
-        <td style="padding:10px 0;border-bottom:1px solid #dde2e9">
-          <b>Open Connect.</b> Readiness checks confirm your public HTTPS
-          address, that the server answers from the internet, and that
-          permissions exist. Each one that fails names the fix and opens the
-          screen that applies it.
-        </td>
-      </tr>
-      <tr>
-        <td style="vertical-align:top;padding:10px 0;font-weight:700;color:#2f4b6e">3</td>
-        <td style="padding:10px 0;border-bottom:1px solid #dde2e9">
-          <b>Copy one URL.</b> Paste it into your assistant and click
-          <b>Allow</b>. VS Code and Cursor get one-click install links; there is
-          a QR code for mobile.
-        </td>
-      </tr>
-      <tr>
-        <td style="vertical-align:top;padding:10px 0;font-weight:700;color:#2f4b6e">4</td>
-        <td style="padding:10px 0">
-          <b>Ask.</b> "What were our sales last month?" — answered, running as
-          you, and logged.
-        </td>
-      </tr>
-    </table>
-  </div>
+/* questions */
+.aimcp .qgroup{margin:0 0 22px}
+.aimcp .qlabel{font-size:12px;font-weight:750;letter-spacing:.1em;text-transform:uppercase;
+ color:var(--teal);margin:0 0 10px}
+.aimcp .q{display:block;background:var(--tint);border:1px solid var(--line);border-radius:10px;
+ padding:11px 16px;margin:0 0 8px;font-size:15.5px;color:var(--ink)}
 
-  <!-- ============================================================== safety -->
-  <h2 style="font-size:26px;margin:40px 0 6px;font-weight:700">Safe because of how it is built</h2>
-  <p style="color:#4e586a;margin:0 0 20px">
-    Not because of a setting somebody has to remember to switch on.
+/* steps */
+.aimcp .step{display:flex;gap:18px;padding:20px 0;border-top:1px solid var(--line)}
+.aimcp .step:first-of-type{border-top:0}
+.aimcp .num{flex:0 0 34px;height:34px;border-radius:50%;background:var(--teal-lt);color:var(--teal);
+ font-weight:750;font-size:15px;display:flex;align-items:center;justify-content:center}
+.aimcp .step p{margin:0;font-size:15.5px;color:var(--body)}
+.aimcp .step b{color:var(--ink)}
+
+/* safety */
+.aimcp .safe{background:var(--tint);border-radius:16px;padding:34px 32px}
+.aimcp .safe .col{border-color:#DCEAE7}
+
+/* clients */
+.aimcp .chips{display:flex;flex-wrap:wrap;gap:9px;margin:4px 0 0}
+.aimcp .chip{background:#fff;border:1px solid var(--line);border-radius:999px;
+ padding:8px 17px;font-size:14.5px;font-weight:600;color:var(--ink)}
+
+/* limits */
+.aimcp .limits{border:1px dashed #CBD5E1;border-radius:16px;padding:30px 32px}
+.aimcp .lrow{display:flex;gap:14px;padding:11px 0;border-top:1px solid var(--line);font-size:15.5px}
+.aimcp .lrow:first-of-type{border-top:0}
+.aimcp .tick{flex:0 0 22px;color:var(--green);font-weight:800}
+.aimcp .dash{flex:0 0 22px;color:#94A3B8;font-weight:800}
+
+.aimcp .foot{text-align:center;padding:34px 0 0;border-top:1px solid var(--line);
+ color:var(--soft);font-size:14px}
+.aimcp .foot a{color:var(--teal);font-weight:650;text-decoration:none}
+
+@media(max-width:640px){
+ .aimcp .hero{padding:38px 20px 32px}
+ .aimcp .hero h1{font-size:33px}
+ .aimcp h2{font-size:25px}
+}
+</style>
+
+<!-- ==================================================================== hero -->
+<div class="hero">
+  <span class="pill">Free &amp; open source · Works with Claude, ChatGPT, Gemini and Cursor</span>
+  <h1>Ask your Odoo a question.<br/>Get a straight answer.</h1>
+  <p>
+    You already pay for an AI assistant. Connect it to Odoo and it can answer
+    questions about your own business — in seconds, in plain English, without
+    you building a single report.
+  </p>
+  <div class="shotwrap"><img src="shot_ask.png" alt="Asking Claude for total sales and getting the answer from Odoo"/></div>
+  <p class="cap">A real question, and the real answer, straight out of Odoo.</p>
+</div>
+
+<!-- ============================================================== the insight -->
+<div class="sec">
+  <h2>The reports you never built</h2>
+  <p class="lede">
+    Every business has questions it stops asking because the answer is too much
+    trouble to get. This is for those.
   </p>
 
-  <table style="width:100%;border-collapse:separate;border-spacing:12px 0">
-    <tr>
-      <td style="width:33%;vertical-align:top;background:#fff;border:1px solid #dde2e9;
-                 border-radius:12px;padding:20px">
-        <b style="display:block;margin-bottom:6px">Read-only, with no switch</b>
-        <span style="color:#4e586a;font-size:15px">
-          No create, update, delete or method-call tool exists in this module.
-          There is nothing to misconfigure into writing.
-        </span>
-      </td>
-      <td style="width:33%;vertical-align:top;background:#fff;border:1px solid #dde2e9;
-                 border-radius:12px;padding:20px">
-        <b style="display:block;margin-bottom:6px">Runs as the real user</b>
-        <span style="color:#4e586a;font-size:15px">
-          Every call executes as the signed-in person, so access rights, record
-          rules, field groups and multi-company isolation all apply underneath.
-          The assistant can never see more than they can.
-        </span>
-      </td>
-      <td style="width:33%;vertical-align:top;background:#fff;border:1px solid #dde2e9;
-                 border-radius:12px;padding:20px">
-        <b style="display:block;margin-bottom:6px">A matrix you control</b>
-        <span style="color:#4e586a;font-size:15px">
-          One row per Odoo model, switchable in a list. It can only ever take
-          access away, never add it.
-        </span>
-      </td>
-    </tr>
-  </table>
-
-  <!-- ================================================================ trust -->
-  <div style="border-left:3px solid #2f4b6e;background:#f7f8fa;border-radius:0 12px 12px 0;
-              padding:24px 28px;margin:32px 0">
-    <h3 style="margin:0 0 8px;font-size:19px">It never quietly gives you half an answer</h3>
-    <p style="margin:0;color:#4e586a">
-      Searches are capped, because an unbounded query on a 100,000-row model
-      takes the database with it. But a <i>silent</i> cap is worse than no cap:
-      the assistant receives a full page, has nothing to tell it the page was
-      full, and reports partial data as the complete answer. Every reply here
-      carries <code>has_more</code>, so it says the answer is partial and
-      narrows the question instead.
-    </p>
+  <div class="qgroup">
+    <p class="qlabel">Sales</p>
+    <span class="q">Who were my ten biggest customers last quarter?</span>
+    <span class="q">Which quotations have been sitting unconfirmed for over a month?</span>
+  </div>
+  <div class="qgroup">
+    <p class="qlabel">Money</p>
+    <span class="q">How much is owed to us right now, and by whom?</span>
+    <span class="q">Compare this year's revenue by month against last year's.</span>
+  </div>
+  <div class="qgroup">
+    <p class="qlabel">Stock &amp; operations</p>
+    <span class="q">What are we about to run out of?</span>
+    <span class="q">Which deliveries are late, and how late?</span>
   </div>
 
-  <!-- ============================================================ standards -->
-  <h2 style="font-size:26px;margin:40px 0 6px;font-weight:700">Standards, not shortcuts</h2>
-  <p style="color:#4e586a;margin:0 0 16px">
-    A self-contained OAuth 2.1 authorization server, so users sign in with
-    their normal Odoo login and SSO and 2FA just work.
+  <p style="font-size:15.5px;color:var(--body);margin-top:20px">
+    Ask follow-ups the way you would ask a colleague. Your assistant can chart
+    it, put it in a table, or write the summary email for you — because once it
+    can see the numbers, it can do everything it already does well with them.
   </p>
-  <p style="color:#4e586a;margin:0 0 24px;font-size:15px">
-    Client ID Metadata Documents (the registration mechanism the MCP spec
-    recommends — the user never sees a client id or secret) · PKCE S256 ·
-    RFC 9728 protected-resource metadata · RFC 8414 server metadata ·
-    RFC 8707 audience-bound tokens · RFC 9207 issuer identification ·
-    RFC 7009 revocation · refresh-token rotation. RFC 7591 dynamic registration
-    is kept as a deprecated fallback.
-  </p>
-  <p style="color:#4e586a;margin:0 0 24px;font-size:15px">
-    The transport is <b>dual-era</b>: protocol revision <code>2026-07-28</code>
-    and the older handshake revisions <code>2025-06-18</code> and
-    <code>2025-03-26</code>, so connectors built against either generation keep
-    working.
-  </p>
+</div>
 
-  <!-- ================================================================ tools -->
-  <h2 style="font-size:26px;margin:40px 0 12px;font-weight:700">Seven tools</h2>
-  <table style="width:100%;border-collapse:collapse;font-size:15px">
-    <tr><td style="padding:8px 12px 8px 0;border-bottom:1px solid #e9ecf1;width:200px"><code>search_records</code></td>
-        <td style="padding:8px 0;border-bottom:1px solid #e9ecf1;color:#4e586a">Search with an Odoo domain and read fields back.</td></tr>
-    <tr><td style="padding:8px 12px 8px 0;border-bottom:1px solid #e9ecf1"><code>read_group</code></td>
-        <td style="padding:8px 0;border-bottom:1px solid #e9ecf1;color:#4e586a">Aggregate and group — revenue by month, leads by salesperson.</td></tr>
-    <tr><td style="padding:8px 12px 8px 0;border-bottom:1px solid #e9ecf1"><code>count_records</code></td>
-        <td style="padding:8px 0;border-bottom:1px solid #e9ecf1;color:#4e586a">Count without reading. Cheap on large models.</td></tr>
-    <tr><td style="padding:8px 12px 8px 0;border-bottom:1px solid #e9ecf1"><code>name_search</code></td>
-        <td style="padding:8px 0;border-bottom:1px solid #e9ecf1;color:#4e586a">Turn a customer or product name into an id, reliably.</td></tr>
-    <tr><td style="padding:8px 12px 8px 0;border-bottom:1px solid #e9ecf1"><code>get_schema</code></td>
-        <td style="padding:8px 0;border-bottom:1px solid #e9ecf1;color:#4e586a">A model's fields, so the assistant builds correct filters.</td></tr>
-    <tr><td style="padding:8px 12px 8px 0;border-bottom:1px solid #e9ecf1"><code>list_models</code></td>
-        <td style="padding:8px 0;border-bottom:1px solid #e9ecf1;color:#4e586a">What this connection may reach.</td></tr>
-    <tr><td style="padding:8px 12px 8px 0"><code>list_capabilities</code></td>
-        <td style="padding:8px 0;color:#4e586a">What it can do, and what it cannot.</td></tr>
-  </table>
-  <p style="color:#4e586a;margin:16px 0 0;font-size:15px">
-    Tools are <b>records</b>, not hard-coded Python. Ship an
-    <code>mcp.capability</code> and some <code>mcp.tool</code> rows, add a
-    handler by inheriting <code>mcp.engine</code>, and you have extended the
-    connector — no controller changes, upgrade-safe.
+<!-- ================================================================= evidence -->
+<div class="sec">
+  <h2>And it does something with the answer</h2>
+  <p class="lede">
+    Your assistant is already good at charts, tables and writing things up. It
+    just never had your numbers before.
   </p>
-
-  <!-- ============================================================= upgrade -->
-  <div style="border:1px dashed #dde2e9;border-radius:14px;padding:28px;margin:40px 0">
-    <h2 style="font-size:22px;margin:0 0 6px;font-weight:700">Where this edition stops</h2>
-    <p style="color:#4e586a;margin:0 0 16px">
-      Everything above is free and open source. <b>AI MCP Pro</b> adds
-      the parts a company needs before it lets an assistant change anything:
-    </p>
-    <ul style="color:#4e586a;margin:0;padding-left:20px;font-size:15px">
-      <li style="padding:4px 0"><b>Governed writes</b> — create, update, delete
-        and allow-listed business methods, with a per-model matrix and a human
-        approval queue in front of every change.</li>
-      <li style="padding:4px 0"><b>Per-team permissions</b> — several scopes,
-        assigned per user, plus field blacklists, record filters and method
-        allow-lists.</li>
-      <li style="padding:4px 0"><b>Compliance-grade audit</b> — every user's
-        activity in one place, with the retention window you need, and
-        long-lived API keys for headless and CI callers.</li>
-    </ul>
+  <div class="grid">
+    <div class="col">
+      <h3>Chart it</h3>
+      <p>"Show that as a bar chart by month." You get one, in the conversation,
+        without opening anything.</p>
+    </div>
+    <div class="col">
+      <h3>Tabulate it</h3>
+      <p>"Put the top twenty in a table with their contact details." Ready to
+        paste wherever it needs to go.</p>
+    </div>
+    <div class="col">
+      <h3>Write it up</h3>
+      <p>"Draft the Monday summary for the team." It has the figures, so the
+        summary is about your week rather than a template.</p>
+    </div>
   </div>
+</div>
 
-  <div style="text-align:center;padding:24px 0 0;border-top:1px solid #dde2e9;color:#7a8494;font-size:14px">
-    <p style="margin:0 0 6px">
-      <a href="mailto:developers@fleet.ke" style="color:#2f4b6e;font-weight:600;text-decoration:none">developers@fleet.ke</a>
+<!-- =================================================================== safety -->
+<div class="sec">
+  <div class="safe">
+    <h2>It can look. It cannot touch.</h2>
+    <p class="lede" style="margin-bottom:22px">
+      The first question everyone asks, answered properly.
     </p>
-    <p style="margin:0">Odoo 19 · Community · Enterprise · Odoo.sh · LGPL-3</p>
+    <div class="grid">
+      <div class="col">
+        <h3>Nothing can be changed</h3>
+        <p>
+          This app can read and count and total. It has no way to create,
+          edit or delete anything in your Odoo — not because a setting says
+          so, but because the ability was never built into it.
+        </p>
+      </div>
+      <div class="col">
+        <h3>It sees exactly what you see</h3>
+        <p>
+          Every question runs as the person who asked it. If a colleague
+          cannot open a record in Odoo, their assistant cannot see it either.
+          Nobody gets a back door.
+        </p>
+      </div>
+      <div class="col">
+        <h3>You choose what it can look at</h3>
+        <p>
+          A simple on/off list of the areas your assistant may read —
+          customers, orders, invoices, stock. Tick what you are comfortable
+          with. Change your mind any time.
+        </p>
+      </div>
+      <div class="col">
+        <h3>Everything is written down</h3>
+        <p>
+          Every question, who asked it and when, kept for a month.
+          Each person can see their own. No surprises later.
+        </p>
+      </div>
+    </div>
   </div>
+</div>
+
+<!-- ==================================================================== setup -->
+<div class="sec">
+  <h2>Two minutes, and no settings to get wrong</h2>
+  <p class="lede">
+    There is one page. It checks everything before you leave it, so you never
+    find out something is wrong by watching your assistant fail.
+  </p>
+
+  <div class="step">
+    <div class="num">1</div>
+    <p><b>Install it.</b> Your Odoo is set up for you as you install — the app
+      works out which parts of your business you actually run, and opens those
+      up for reading. Sales, invoicing, stock, contacts, whichever you have.</p>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <p><b>Copy one address.</b> One line, one button. There is a QR code if you
+      want it on your phone, and a single click for VS&nbsp;Code and Cursor.</p>
+  </div>
+  <div class="step">
+    <div class="num">3</div>
+    <p><b>Paste it into your assistant and sign in.</b> You log in with your
+      normal Odoo username and password — the same one you use every day, with
+      whatever two-factor or single sign-on you already have. Then ask it
+      something.</p>
+  </div>
+  <div class="step">
+    <div class="num">✓</div>
+    <p><b>Not sure it worked?</b> There is a button that asks a real question on
+      your behalf and shows you the answer, before you have touched your
+      assistant at all.</p>
+  </div>
+</div>
+
+<!-- ================================================================== clients -->
+<div class="sec">
+  <h2>Bring the assistant you already use</h2>
+  <p class="lede">
+    Nothing to sign up for, no second subscription, no API key to paste
+    anywhere. If your assistant can take a connector, it works.
+  </p>
+  <div class="chips">
+    <span class="chip">Claude</span>
+    <span class="chip">ChatGPT</span>
+    <span class="chip">Gemini</span>
+    <span class="chip">Cursor</span>
+    <span class="chip">VS Code</span>
+    <span class="chip">Copilot</span>
+    <span class="chip">…and any other</span>
+  </div>
+  <p style="font-size:15px;color:var(--soft);margin-top:16px">
+    Your data goes to the assistant you chose and nowhere else. Nothing passes
+    through us, and there is no account to create.
+  </p>
+</div>
+
+<!-- =================================================================== limits -->
+<div class="sec">
+  <div class="limits">
+    <h2>Free, and honest about where it stops</h2>
+    <p class="lede" style="margin-bottom:20px">
+      This is the whole app, not a countdown to a paywall. Here is exactly what
+      you get and what you do not.
+    </p>
+    <div class="lrow"><span class="tick">✓</span><span>Ask anything about your Odoo data, from any assistant</span></div>
+    <div class="lrow"><span class="tick">✓</span><span>As many people as you like — everyone in your company can connect their own</span></div>
+    <div class="lrow"><span class="tick">✓</span><span>Choose which areas of your business are readable</span></div>
+    <div class="lrow"><span class="tick">✓</span><span>A record of every question asked</span></div>
+    <div class="lrow"><span class="dash">—</span><span><b>Letting the assistant make changes</b> — creating a quotation, updating a contact, confirming an order</span></div>
+    <div class="lrow"><span class="dash">—</span><span><b>Approving those changes before they happen</b>, so a person always signs off</span></div>
+    <div class="lrow"><span class="dash">—</span><span><b>Different rules for different teams</b> — finance sees one thing, the sales floor another</span></div>
+    <div class="lrow"><span class="dash">—</span><span><b>Long-term records</b> for audit, and connections for systems rather than people</span></div>
+    <p style="font-size:15.5px;color:var(--body);margin:20px 0 0">
+      Those four are <b>AI MCP Pro</b>. You will know when you need it —
+      and until then, nothing here expires or nags.
+    </p>
+  </div>
+</div>
+
+<!-- ==================================================================== extra -->
+<div class="sec">
+  <h2>Build dashboards by asking for them</h2>
+  <p class="lede" style="margin-bottom:0">
+    Once this is connected, install <b>AI Dashboards Free</b> — also free — and
+    you can describe a dashboard in a sentence and have it appear in Odoo as a
+    screen your team opens like any other.
+  </p>
+</div>
+
+<div class="foot">
+  <p style="margin:0 0 6px"><a href="mailto:developers@fleet.ke">developers@fleet.ke</a></p>
+  <p style="margin:0">Odoo 19 · Community, Enterprise and Odoo.sh · Open source (LGPL-3)</p>
+</div>
 
 </section>
