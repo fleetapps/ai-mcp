@@ -174,7 +174,7 @@ class MCPScopeLine(models.Model):
     def blacklisted_fields(self):
         """Fields never returned or accepted for this model.
 
-        Always empty here - per-field exclusions are an AI MCP Governance
+        Always empty here - per-field exclusions are an AI MCP Pro
         feature. The method exists anyway, and is part of this module's
         supported surface, because it is what every caller reaching a matrix
         row asks for before naming a field: the engine's read handlers, and

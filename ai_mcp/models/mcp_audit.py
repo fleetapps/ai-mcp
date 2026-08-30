@@ -8,7 +8,7 @@ retention.
 
 The trail itself is deliberately not a paid feature: a connector that lets an
 assistant read an ERP without recording what it read is not a cheaper product,
-it is an unaccountable one. What AI MCP Governance adds is the *compliance*
+it is an unaccountable one. What AI MCP Pro adds is the *compliance*
 layer on top - the instance-wide view across every user, a configurable
 retention window, and reporting.
 """

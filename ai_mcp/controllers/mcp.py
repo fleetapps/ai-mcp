@@ -221,7 +221,7 @@ class MCPController(http.Controller):
 
         # OAuth 2.1 access token. The only credential this edition accepts: a
         # person, signed in as themselves, through a browser. Long-lived API
-        # keys for headless and CI callers are an AI MCP Governance feature.
+        # keys for headless and CI callers are an AI MCP Pro feature.
         if param_enabled(env, "oauth_enabled", True):
             tok = env["mcp.oauth.token"].sudo().search(
                 [("access_token_hash", "=", hash_secret(token))], limit=1)

@@ -33,7 +33,7 @@ from ..models.tools_crypto import hash_secret, new_secret
 _logger = logging.getLogger(__name__)
 
 # The one scope this resource understands. Every tool in this edition reads, so
-# there is nothing a second scope could gate. AI MCP Governance adds
+# there is nothing a second scope could gate. AI MCP Pro adds
 # ``odoo:write`` here, along with the consent checkbox and the step-up flow
 # that make it meaningful.
 SCOPE_READ = "odoo:read"

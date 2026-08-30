@@ -7,7 +7,7 @@ Odoo's `19.0.MAJOR.MINOR.PATCH` scheme.
 ## [19.0.1.0.0] — 2026-08-30
 
 First open-source release. AI MCP is the free, read-only edition of the Odoo
-MCP connector, extracted from the commercial AI MCP Governance suite and
+MCP connector, extracted from the commercial AI MCP Pro suite and
 published under LGPL-3.
 
 ### Added

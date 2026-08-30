@@ -62,7 +62,7 @@ the connector — no controller surgery, upgrade-safe.
 
 Need governed writes?
 ---------------------
-**AI MCP Governance** adds create/update/delete with a human approval queue,
+**AI MCP Pro** adds create/update/delete with a human approval queue,
 per-user scopes, field blacklists, record filters, method allow-lists,
 long-lived API keys for headless callers, and compliance-grade audit retention.
 

@@ -73,7 +73,7 @@ History is kept for 30 days.
 Going further
 =============
 
-`AI MCP Governance <https://apps.odoo.com/apps/modules/19.0/mcp_governance_suite>`_
+`AI MCP Pro <https://apps.odoo.com/apps/modules/19.0/mcp_governance_suite>`_
 adds governed writes with a human approval queue, per-user scopes, field
 blacklists, record filters, method allow-lists, API keys for headless callers,
 and configurable audit retention.

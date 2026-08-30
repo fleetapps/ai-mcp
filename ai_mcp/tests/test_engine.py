@@ -85,8 +85,19 @@ class TestEngine(TransactionCase):
         self.assertFalse(tool.writes)
         self.engine._check_write_permitted(tool, {})  # must not raise
 
-    def test_no_shipped_tool_writes(self):
-        self.assertFalse(self.env["mcp.tool"].search([("writes", "=", True)]))
+    def test_no_tool_shipped_by_this_module_writes(self):
+        """Scoped to our own records, not the whole registry.
+
+        A downstream module is *expected* to add writing verbs - that is what
+        the extension point is for, and AI Dashboards does exactly it. Asserting
+        over every mcp.tool row would turn this module's own invariant into a
+        test that fails the moment somebody uses the thing as intended.
+        """
+        ours = self.env["ir.model.data"].search([
+            ("module", "=", "ai_mcp"), ("model", "=", "mcp.tool")])
+        tools = self.env["mcp.tool"].browse(ours.mapped("res_id")).exists()
+        self.assertTrue(tools, "the seed tools should be installed")
+        self.assertFalse(tools.filtered("writes"))
 
     # --------------------------------------------------------------- listing
     def test_list_tools_carries_annotations_and_a_stable_order(self):

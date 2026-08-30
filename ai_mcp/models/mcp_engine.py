@@ -192,7 +192,7 @@ class MCPEngine(models.AbstractModel):
         answer: the alternative is executing an unaudited, ungated write
         because a registry row said so.
 
-        AI MCP Governance overrides this with the real gate - the scope's Read
+        AI MCP Pro overrides this with the real gate - the scope's Read
         Only switch, the per-operation matrix bits, the granted ``odoo:write``
         OAuth scope, and the human approval queue.
         """
@@ -200,7 +200,7 @@ class MCPEngine(models.AbstractModel):
             raise AccessError(_(
                 "'%s' changes records. This edition of AI MCP is read-only; "
                 "governed writes, with a per-model permission matrix and a "
-                "human approval queue, are provided by AI MCP Governance."
+                "human approval queue, are provided by AI MCP Pro."
             ) % tool.name)
 
     # =============================================================== rate limit
@@ -263,7 +263,7 @@ class MCPEngine(models.AbstractModel):
     def _scope_domain(self, line):
         """Extra domain ANDed onto every read of this model.
 
-        Always empty here; AI MCP Governance returns the row's record domain.
+        Always empty here; AI MCP Pro returns the row's record domain.
         """
         return []
 

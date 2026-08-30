@@ -31,7 +31,7 @@ so there is nothing to misconfigure into writing.
 
 Governed writes with a human approval queue, per-user scopes, field
 blacklists, record filters, method allow-lists, long-lived API keys and
-compliance-grade audit retention are in **AI MCP Governance**.
+compliance-grade audit retention are in **AI MCP Pro**.
 
 ## Safety model
 

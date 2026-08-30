@@ -22,8 +22,23 @@ READ_HANDLERS = {
 @tagged("post_install", "-at_install")
 class TestHandlerClassification(TransactionCase):
 
-    def test_every_selectable_handler_is_classified(self):
-        """Neither read nor write means nothing decided whether it mutates."""
+    def _selectable(self):
+        """Every handler a tool row can name, *including* downstream additions.
+
+        Read off the resolved field rather than the module constant, so a
+        module that extends the selection is covered by these checks instead of
+        breaking them.
+        """
+        selection = self.env["mcp.tool"].fields_get(
+            ["handler"])["handler"]["selection"]
+        return {key for key, _label in selection}
+
+    def test_every_handler_this_module_declares_is_classified(self):
+        """Neither read nor write means nothing decided whether it mutates.
+
+        This module's own verbs only: a downstream module classifies its own,
+        and its own tests are where that belongs.
+        """
         declared = {key for key, _label in HANDLER_SELECTION}
         unclassified = declared - READ_HANDLERS - set(WRITE_HANDLERS)
         self.assertFalse(
@@ -32,9 +47,13 @@ class TestHandlerClassification(TransactionCase):
             % sorted(unclassified))
 
     def test_every_selectable_handler_is_implemented(self):
-        """A tool row can only name a verb the engine actually has."""
+        """A tool row can only name a verb the engine actually has.
+
+        Covers extensions too: a module that adds to the selection without
+        adding the handler fails here rather than at the first tools/call.
+        """
         engine = self.env["mcp.engine"]
-        for key, _label in HANDLER_SELECTION:
+        for key in sorted(self._selectable()):
             self.assertTrue(
                 hasattr(engine, "_handler_%s" % key),
                 "mcp.tool.handler offers '%s' with no _handler_%s on the engine"
@@ -42,15 +61,19 @@ class TestHandlerClassification(TransactionCase):
 
     def test_no_engine_handler_is_missing_from_the_selection(self):
         """The mirror of the check above: an implemented verb nobody can pick
-        is dead code, and one that a later release exposes by accident has
-        never been through the classification above."""
+        is dead code, and one a later release exposes by accident has never
+        been through classification.
+
+        Compared against the resolved selection, so an inherited handler from
+        an extension counts as selectable - it is, through that module's
+        selection_add.
+        """
         engine = self.env["mcp.engine"]
         implemented = {name[len("_handler_"):] for name in dir(engine)
                        if name.startswith("_handler_")}
-        declared = {key for key, _label in HANDLER_SELECTION}
+        orphans = implemented - self._selectable()
         self.assertFalse(
-            implemented - declared,
-            "implemented but not selectable: %s" % sorted(implemented - declared))
+            orphans, "implemented but not selectable: %s" % sorted(orphans))
 
     def test_this_edition_declares_no_writing_verb(self):
         self.assertEqual(set(WRITE_HANDLERS), set())
