@@ -105,6 +105,7 @@ Provider-agnostic. Multi-company aware. Fully translatable. LGPL-3.
     "images": [
         "static/description/banner.png",
     ],
+    "pre_init_hook": "pre_init_check",
     "post_init_hook": "post_init_hook",
     "installable": True,
     "application": True,
