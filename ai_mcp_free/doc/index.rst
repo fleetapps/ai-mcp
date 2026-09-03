@@ -13,7 +13,7 @@ aggregate, and cannot create, update or delete anything.
 Installation
 ============
 
-Drop ``ai_mcp`` into your addons path and install it from Apps.
+Drop ``ai_mcp_free`` into your addons path and install it from Apps.
 
 Your Odoo must be reachable on a **public HTTPS address**. The Connect screen
 checks this for you and offers to fix the usual causes in one click.

@@ -28,7 +28,7 @@ def post_init_hook(env):
     widened again behind their back. Existing databases get the same thing as a
     button on the Connect screen instead.
     """
-    scope = env.ref("ai_mcp.scope_readonly_default",
+    scope = env.ref("ai_mcp_free.scope_readonly_default",
                     raise_if_not_found=False)
     if not scope:  # pragma: no cover - the record ships in this module
         return

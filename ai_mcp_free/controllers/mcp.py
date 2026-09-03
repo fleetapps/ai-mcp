@@ -56,7 +56,7 @@ LATEST_LEGACY_VERSION = LEGACY_PROTOCOL_VERSIONS[0]
 # release it matters most for.
 SERVER_INFO = {
     "name": "odoo-ai-mcp",
-    "version": get_manifest("ai_mcp").get("version", ""),
+    "version": get_manifest("ai_mcp_free").get("version", ""),
 }
 SERVER_INSTRUCTIONS = (
     "AI MCP for Odoo. This connection is READ-ONLY: you can search, count, "
@@ -109,7 +109,7 @@ def _allowed_origins(env):
     Origin is exactly the DNS-rebinding hole the transport spec calls out.
     """
     raw = env["ir.config_parameter"].sudo().get_param(
-        "ai_mcp.allowed_origins", "")
+        "ai_mcp_free.allowed_origins", "")
     return {o.strip().rstrip("/") for o in raw.split(",") if o.strip()}
 
 

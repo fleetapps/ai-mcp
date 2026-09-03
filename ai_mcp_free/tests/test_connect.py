@@ -22,7 +22,7 @@ class TestConnectState(TransactionCase):
         super().setUpClass()
         cls.Connect = cls.env["mcp.connect"]
         cls.admin = cls.env.ref("base.user_admin")
-        cls.scope = cls.env.ref("ai_mcp.scope_readonly_default")
+        cls.scope = cls.env.ref("ai_mcp_free.scope_readonly_default")
 
     def _checks(self, state):
         return {c["key"]: c for c in state["checks"]}
@@ -43,7 +43,7 @@ class TestConnectState(TransactionCase):
     def test_get_state_makes_no_outbound_request(self):
         """It is polled every few seconds - a network call here would hang it."""
         self.env["ir.config_parameter"].sudo().set_param(
-            "ai_mcp.reachability_state", "")
+            "ai_mcp_free.reachability_state", "")
         self.assertEqual(self._checks(self.Connect.get_state())["reach"]["state"],
                          "unknown")
 

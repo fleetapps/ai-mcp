@@ -35,9 +35,9 @@ except ImportError:  # pragma: no cover
 
 _logger = logging.getLogger(__name__)
 
-PARAM_REACH_STATE = "ai_mcp.reachability_state"
-PARAM_REACH_AT = "ai_mcp.reachability_checked_at"
-PARAM_REACH_DETAIL = "ai_mcp.reachability_detail"
+PARAM_REACH_STATE = "ai_mcp_free.reachability_state"
+PARAM_REACH_AT = "ai_mcp_free.reachability_checked_at"
+PARAM_REACH_DETAIL = "ai_mcp_free.reachability_detail"
 REACH_TIMEOUT = 4
 # How long a reachability verdict stands before the screen probes again. The
 # test costs an outbound round trip plus three parameter writes, and the screen
@@ -178,7 +178,7 @@ class MCPConnect(models.TransientModel):
         connections = self._connections()
         checks = self._readiness_checks(base)
         state = {
-            "can_admin": self.env.user.has_group("ai_mcp.group_mcp_admin"),
+            "can_admin": self.env.user.has_group("ai_mcp_free.group_mcp_admin"),
             "checks": checks,
             "ready": all(c["state"] != "fail" for c in checks),
             "urls": {
@@ -262,7 +262,7 @@ class MCPConnect(models.TransientModel):
                 "scope", "fail", _("No governance scope exists"),
                 _("A scope decides what an assistant may see and do. Without "
                   "one, nobody can be authorized."),
-                _("Create a scope"), "ai_mcp.mcp_scope_action"))
+                _("Create a scope"), "ai_mcp_free.mcp_scope_action"))
         else:
             checks.append(self._check(
                 "scope", "ok", _("%s scope(s) configured") % scopes))
@@ -279,7 +279,7 @@ class MCPConnect(models.TransientModel):
                 _("An assistant with no models in the permission matrix can "
                   "connect but can do nothing at all."),
                 _("Open the matrix"),
-                "ai_mcp.mcp_scope_line_action"))
+                "ai_mcp_free.mcp_scope_line_action"))
         else:
             checks.append(self._check(
                 "models", "ok", _("%s model permission(s) set") % lines))
@@ -290,13 +290,13 @@ class MCPConnect(models.TransientModel):
         # 7. Master switch. The happy path needs a row of its own: without one
         # the list simply ends, and a checklist that stops early reads as a
         # checklist that has not finished running.
-        enabled = Param.get_param("ai_mcp.enabled", "1")
+        enabled = Param.get_param("ai_mcp_free.enabled", "1")
         if str(enabled).lower() not in ("1", "true", "t", "yes"):
             checks.append(self._check(
                 "enabled", "fail", _("AI access is switched off"),
                 _("Nothing will answer until you turn it back on."),
                 _("Open settings"),
-                "ai_mcp.mcp_config_settings_action"))
+                "ai_mcp_free.mcp_config_settings_action"))
         else:
             checks.append(self._check(
                 "enabled", "ok", _("AI access is switched on"),
@@ -326,7 +326,7 @@ class MCPConnect(models.TransientModel):
         installed = [m for m in SUGGESTED_MODELS if m in self.env]
         if not installed or readable & set(installed):
             return []
-        fix = self.env.user.has_group("ai_mcp.group_mcp_admin")
+        fix = self.env.user.has_group("ai_mcp_free.group_mcp_admin")
         return [self._check(
             "models_thin", "warn",
             _("Your assistant cannot see your business data yet"),
@@ -550,7 +550,7 @@ class MCPConnect(models.TransientModel):
     @api.model
     def _scoping_domain(self):
         """Admins see the whole instance; everyone else only themselves."""
-        if self.env.user.has_group("ai_mcp.group_mcp_admin"):
+        if self.env.user.has_group("ai_mcp_free.group_mcp_admin"):
             return []
         return [("user_id", "=", self.env.uid)]
 
@@ -628,7 +628,7 @@ class MCPConnect(models.TransientModel):
             return {"state": self.get_state(), "ok": False,
                     "message": _("That connection no longer exists.")}
         if token.user_id.id != self.env.uid and not self.env.user.has_group(
-                "ai_mcp.group_mcp_admin"):
+                "ai_mcp_free.group_mcp_admin"):
             return {"state": self.get_state(), "ok": False,
                     "message": _("You can only disconnect your own assistants.")}
         token.action_revoke()
@@ -638,7 +638,7 @@ class MCPConnect(models.TransientModel):
     @api.model
     def revoke_all(self):
         """Kill switch. Admins cut everyone off; users cut off themselves."""
-        if self.env.user.has_group("ai_mcp.group_mcp_admin"):
+        if self.env.user.has_group("ai_mcp_free.group_mcp_admin"):
             self.env["mcp.oauth.token"].sudo().search(
                 [("revoked", "=", False)]).write({"revoked": True})
         else:
@@ -658,7 +658,7 @@ class MCPConnect(models.TransientModel):
         who could not act on it anyway.
         """
         return {
-            "show": self.env.user.has_group("ai_mcp.group_mcp_admin"),
+            "show": self.env.user.has_group("ai_mcp_free.group_mcp_admin"),
             "url": GOVERNANCE_URL,
             "dashboards_url": DASHBOARDS_URL,
         }
@@ -670,7 +670,7 @@ class MCPConnect(models.TransientModel):
         The same thing the install hook does for a new database, offered as a
         button so an existing one is never widened without somebody asking.
         """
-        if not self.env.user.has_group("ai_mcp.group_mcp_admin"):
+        if not self.env.user.has_group("ai_mcp_free.group_mcp_admin"):
             raise AccessError(_(
                 "Only an AI MCP administrator can add models to the "
                 "permission matrix."))

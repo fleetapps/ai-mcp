@@ -120,7 +120,7 @@ def normalize_scopes(raw, default=None):
 
 def param_enabled(env, suffix, default=True):
     val = env["ir.config_parameter"].sudo().get_param(
-        "ai_mcp.%s" % suffix, "1" if default else "0")
+        "ai_mcp_free.%s" % suffix, "1" if default else "0")
     return str(val).lower() in ("1", "true", "t", "yes")
 
 
@@ -331,18 +331,18 @@ class MCPOAuthController(http.Controller):
                 methods=["GET"], csrf=False, save_session=True)
     def authorize(self, **kw):
         if not param_enabled(request.env, "oauth_enabled", True):
-            return _render_page("ai_mcp.oauth_error",
+            return _render_page("ai_mcp_free.oauth_error",
                                 {"message": "OAuth is disabled on this server."})
         client, error = self._resolve_client(kw.get("client_id"))
         if error:
             # Never redirect on an unresolved client - we have no trustworthy
             # redirect target yet, so report on-server.
-            return _render_page("ai_mcp.oauth_error", {
+            return _render_page("ai_mcp_free.oauth_error", {
                 "message": "Unknown client, or its metadata document could not "
                            "be validated."})
         redirect_uri = kw.get("redirect_uri")
         if not client.validate_redirect_uri(redirect_uri):
-            return _render_page("ai_mcp.oauth_error", {
+            return _render_page("ai_mcp_free.oauth_error", {
                 "message": "The redirect URI is not registered for this client."})
 
         if kw.get("response_type") != "code":
@@ -365,7 +365,7 @@ class MCPOAuthController(http.Controller):
         # RFC 6749 §3.3: a client that asks for nothing gets our default.
         # Everything this edition can grant is read, so the set is fixed.
         granted = [SCOPE_READ]
-        return _render_page("ai_mcp.oauth_consent", {
+        return _render_page("ai_mcp_free.oauth_consent", {
             "client": client,
             "user": request.env.user,
             "scope": governance,
@@ -373,7 +373,7 @@ class MCPOAuthController(http.Controller):
             "scope_labels": self._scope_labels(granted),
             "access_ttl_hours": max(1, round(int(
                 request.env["ir.config_parameter"].sudo().get_param(
-                    "ai_mcp.access_token_ttl", 3600)) / 3600)),
+                    "ai_mcp_free.access_token_ttl", 3600)) / 3600)),
             "params": {
                 "client_id": client.client_id,
                 "redirect_uri": redirect_uri,
@@ -407,7 +407,7 @@ class MCPOAuthController(http.Controller):
     def authorize_decision(self, **kw):
         client, error = self._resolve_client(kw.get("client_id"))
         if error or not client.validate_redirect_uri(kw.get("redirect_uri")):
-            return _render_page("ai_mcp.oauth_error", {
+            return _render_page("ai_mcp_free.oauth_error", {
                 "message": "Unknown client or unregistered redirect URI."})
         redirect_uri = kw.get("redirect_uri")
         state = kw.get("state") or ""

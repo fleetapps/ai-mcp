@@ -21,22 +21,22 @@ class ResConfigSettings(models.TransientModel):
     # -- master switches ----------------------------------------------------
     mcp_enabled = fields.Boolean(
         string="Enable MCP Server",
-        config_parameter="ai_mcp.enabled", default=True)
+        config_parameter="ai_mcp_free.enabled", default=True)
     mcp_oauth_enabled = fields.Boolean(
         string="Sign in with Odoo (OAuth 2.1)",
-        config_parameter="ai_mcp.oauth_enabled", default=True,
+        config_parameter="ai_mcp_free.oauth_enabled", default=True,
         help="The recommended, browser-based connect flow. No API keys, no "
              "config files - the user just clicks Allow.")
     mcp_dynamic_registration = fields.Boolean(
         string="Allow dynamic client registration",
-        config_parameter="ai_mcp.dynamic_registration", default=True,
+        config_parameter="ai_mcp_free.dynamic_registration", default=True,
         help="RFC 7591, deprecated by the MCP specification in favour of Client "
              "ID Metadata Documents. Kept for clients that cannot host a "
              "metadata document. Disable to lock the server to CIMD and "
              "pre-registered clients.")
     mcp_allowed_origins = fields.Char(
         string="Allowed browser origins",
-        config_parameter="ai_mcp.allowed_origins",
+        config_parameter="ai_mcp_free.allowed_origins",
         help="Comma-separated origins permitted to call the MCP endpoint from "
              "a browser, e.g. https://app.example.com. Empty is the safe "
              "default: MCP clients are not browsers, and accepting any origin "
@@ -46,10 +46,10 @@ class ResConfigSettings(models.TransientModel):
     # -- token lifetimes ----------------------------------------------------
     mcp_access_token_ttl = fields.Integer(
         string="Access token lifetime (seconds)",
-        config_parameter="ai_mcp.access_token_ttl", default=3600)
+        config_parameter="ai_mcp_free.access_token_ttl", default=3600)
     mcp_refresh_token_ttl = fields.Integer(
         string="Refresh token lifetime (seconds)",
-        config_parameter="ai_mcp.refresh_token_ttl", default=2592000)
+        config_parameter="ai_mcp_free.refresh_token_ttl", default=2592000)
 
     mcp_public_base_url = fields.Char(
         string="Public address override",
@@ -80,4 +80,4 @@ class ResConfigSettings(models.TransientModel):
     def action_open_connect(self):
         """Open the Connect screen — readiness checks, URL, QR and live status."""
         return self.env["ir.actions.actions"]._for_xml_id(
-            "ai_mcp.mcp_connect_action")
+            "ai_mcp_free.mcp_connect_action")

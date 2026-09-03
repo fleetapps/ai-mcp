@@ -24,11 +24,11 @@ class TestEmployeeAccess(TransactionCase):
 
     def test_every_employee_holds_the_mcp_user_role(self):
         """Nobody has to find a group they were never told about."""
-        self.assertTrue(self.employee.has_group("ai_mcp.group_mcp_user"))
+        self.assertTrue(self.employee.has_group("ai_mcp_free.group_mcp_user"))
 
     def test_an_employee_is_not_made_an_administrator(self):
         self.assertFalse(
-            self.employee.has_group("ai_mcp.group_mcp_admin"),
+            self.employee.has_group("ai_mcp_free.group_mcp_admin"),
             "the admin role must stay something an administrator grants")
 
     def test_an_employee_can_open_the_connect_screen(self):
@@ -45,7 +45,7 @@ class TestEmployeeAccess(TransactionCase):
     def test_an_employee_cannot_edit_the_permission_matrix(self):
         with self.assertRaises(AccessError):
             self.env["mcp.scope.line"].with_user(self.employee).create({
-                "scope_id": self.env.ref("ai_mcp.scope_readonly_default").id,
+                "scope_id": self.env.ref("ai_mcp_free.scope_readonly_default").id,
                 "model_id": self.env["ir.model"]._get("res.users").id,
             })
 

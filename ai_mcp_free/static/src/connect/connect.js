@@ -16,7 +16,7 @@ const POLL_FAST = 5000;
 const POLL_SLOW = 30000;
 
 export class MCPConnect extends Component {
-    static template = "ai_mcp.Connect";
+    static template = "ai_mcp_free.Connect";
     static props = ["*"];
 
     setup() {
@@ -230,4 +230,4 @@ export class MCPConnect extends Component {
     }
 }
 
-registry.category("actions").add("ai_mcp.connect", MCPConnect);
+registry.category("actions").add("ai_mcp_free.connect", MCPConnect);

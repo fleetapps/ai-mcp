@@ -97,9 +97,9 @@ Provider-agnostic. Multi-company aware. Fully translatable. LGPL-3.
     ],
     "assets": {
         "web.assets_backend": [
-            "ai_mcp/static/src/connect/connect.scss",
-            "ai_mcp/static/src/connect/connect.js",
-            "ai_mcp/static/src/connect/connect.xml",
+            "ai_mcp_free/static/src/connect/connect.scss",
+            "ai_mcp_free/static/src/connect/connect.js",
+            "ai_mcp_free/static/src/connect/connect.xml",
         ],
     },
     # The store falls back to the icon when there is no banner. Deliberate:

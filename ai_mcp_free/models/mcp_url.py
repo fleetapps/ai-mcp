@@ -33,7 +33,7 @@ reasons:
 So the scheme is resolved from every signal available and https wins whenever
 any of them reports it. The rules, in order:
 
-* an explicit ``ai_mcp.public_base_url`` override always wins -
+* an explicit ``ai_mcp_free.public_base_url`` override always wins -
   the escape hatch for deployments no heuristic can read;
 * otherwise the host comes from the request (``X-Forwarded-Host`` only when
   ``proxy_mode`` is on, matching Odoo's own trust boundary);
@@ -51,7 +51,7 @@ from urllib.parse import urlparse
 
 from odoo.tools import config
 
-PARAM_PUBLIC_BASE_URL = "ai_mcp.public_base_url"
+PARAM_PUBLIC_BASE_URL = "ai_mcp_free.public_base_url"
 PARAM_WEB_BASE_URL = "web.base.url"
 PARAM_FREEZE = "web.base.url.freeze"
 

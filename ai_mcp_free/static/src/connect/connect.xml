@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
-<t t-name="ai_mcp.Connect">
+<t t-name="ai_mcp_free.Connect">
     <!-- The `o_content` wrapper is what scrolls, and it is not optional.
          Odoo's own layout sets `.o_web_client > .o_action_manager > .o_action`
          to `overflow: hidden` (webclient_layout.scss) at a higher specificity

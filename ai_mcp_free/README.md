@@ -50,7 +50,7 @@ set.
 
 ## Install
 
-Drop `ai_mcp/` into your addons path and install it from Apps. Odoo 19.
+Drop `ai_mcp_free/` into your addons path and install it from Apps. Odoo 19.
 
 Your Odoo needs a **public HTTPS address**; the Connect screen tells you if it
 does not have one and offers to pin it.

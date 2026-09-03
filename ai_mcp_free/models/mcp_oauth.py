@@ -48,10 +48,10 @@ from .tools_crypto import (
 _logger = logging.getLogger(__name__)
 
 # ir.config_parameter keys (seconds) -- overridable per database.
-PARAM_ACCESS_TTL = "ai_mcp.access_token_ttl"
-PARAM_REFRESH_TTL = "ai_mcp.refresh_token_ttl"
-PARAM_CODE_TTL = "ai_mcp.authcode_ttl"
-PARAM_CIMD_TTL = "ai_mcp.cimd_cache_ttl"
+PARAM_ACCESS_TTL = "ai_mcp_free.access_token_ttl"
+PARAM_REFRESH_TTL = "ai_mcp_free.refresh_token_ttl"
+PARAM_CODE_TTL = "ai_mcp_free.authcode_ttl"
+PARAM_CIMD_TTL = "ai_mcp_free.cimd_cache_ttl"
 
 DEFAULT_ACCESS_TTL = 3600          # 1 hour  - short-lived per OAuth 2.1 §7.1
 DEFAULT_REFRESH_TTL = 60 * 60 * 24 * 30  # 30 days

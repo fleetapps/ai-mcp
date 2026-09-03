@@ -17,7 +17,7 @@ class TestHttpEndpoints(HttpCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.scope = cls.env.ref("ai_mcp.scope_readonly_default")
+        cls.scope = cls.env.ref("ai_mcp_free.scope_readonly_default")
         # OAuth is the only credential this edition accepts, so the transport
         # tests authenticate the way a real client does.
         base = cls.env["ir.config_parameter"].sudo().get_param(

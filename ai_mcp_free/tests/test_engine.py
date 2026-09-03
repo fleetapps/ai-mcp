@@ -19,7 +19,7 @@ class TestEngine(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.engine = cls.env["mcp.engine"]
-        cls.scope = cls.env.ref("ai_mcp.scope_readonly_default")
+        cls.scope = cls.env.ref("ai_mcp_free.scope_readonly_default")
 
     def _call(self, name, args=None):
         result = self.engine.call_tool(self.scope, name, args or {}, {})
@@ -94,7 +94,7 @@ class TestEngine(TransactionCase):
         test that fails the moment somebody uses the thing as intended.
         """
         ours = self.env["ir.model.data"].search([
-            ("module", "=", "ai_mcp"), ("model", "=", "mcp.tool")])
+            ("module", "=", "ai_mcp_free"), ("model", "=", "mcp.tool")])
         tools = self.env["mcp.tool"].browse(ours.mapped("res_id")).exists()
         self.assertTrue(tools, "the seed tools should be installed")
         self.assertFalse(tools.filtered("writes"))
